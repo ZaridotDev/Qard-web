@@ -1,0 +1,98 @@
+
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 1rem;
+  
+  background-color: var(--6);
+  
+  position: fixed;
+  left: 0;
+  top: 4rem;
+  bottom: 2rem;
+  
+  width: 3rem;
+  padding: 0.5rem;
+  padding-top: 2rem;
+  
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: width 200ms ease;
+}
+.nav:hover {
+  width: 14rem;
+}
+.nav:hover + .main{
+  left: 15rem;
+}
+.nav:hover .navitem{
+  height: '100%';
+  width: '100%';
+}
+.nav:hover .text{
+  opacity: 1;
+  /* width: 14rem; */
+  transform: translateX(1rem);
+  transition: opacity 200ms ease,
+              transform 200ms ease;
+}
+.nav:hover .icon {
+  color: white;
+  /* height: 6rem;
+  width: 6rem; */
+  transform: translateX(0rem);
+  transition: opacity 200ms ease,
+  transform 200ms ease;
+}
+.navlink {
+  display: flex;
+  text-decoration: none;
+  position: relative;
+  flex-direction: row;
+  align-content: center;
+  gap: 0.5rem
+}
+.navlink::before {
+  content: "";
+  position: absolute;
+  background-color: var(--7);
+  
+  left: 0;
+  top: 0;
+  bottom: 0;
+  
+  width: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: width 150ms ease,
+              opacity 200ms ease;
+  border-radius: 10px;
+}
+.navlink:hover::before {
+  width: 100%;
+  opacity: 1;
+}
+.navitem {
+  display: flex;
+  background-color: var(--7);
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 10px;
+  padding: 4px;
+  align-items: center;
+  justify-content: center;
+}
+.text {
+  color: white;
+  opacity: 0;
+  width: 0;
+  white-space: nowrap;
+  transform: translateX(-20px);
+}
+.icon {
+  color: white;
+  height: 2rem;
+  width: 2rem;
+}
