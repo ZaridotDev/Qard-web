@@ -5,11 +5,11 @@ import AppLayout from "../layouts/AppLayout";
 import LoginPage from "../pages/auth/LoginPage";
 import RegisterPage from "../pages/auth/RegisterPage";
 import ForgotPasswordPage from "../pages/auth/ForgotPasswordPage";
-import DashboardPage from "../pages/DashboardPage";
-import TransactionsPage from "../pages/TransactionsPage";
-import PaymentMethodsPage from "../pages/PaymentMethodsPage";
-import CategoriesPage from "../pages/CategoriesPage";
-import RecurrentsPage from "../pages/RecurrentsPage";
+import DashboardPage from "../pages/dashboard/DashboardPage";
+import TransactionsPage from "../pages/transactions/TransactionsPage";
+import PaymentMethodsPage from "../pages/paymentMethods/PaymentMethodsPage";
+import CategoriesPage from "../pages/categories/CategoriesPage";
+import RecurrentsPage from "../pages/recurrents/RecurrentsPage";
 
 export default function AppRouter() {
   return (
