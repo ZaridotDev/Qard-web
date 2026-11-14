@@ -13,7 +13,7 @@ import RecurrentsPage from "../pages/recurrents/RecurrentsPage";
 
 export default function AppRouter() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Qard-web">
       <Routes>
 
         {/* Rutas públicas — usan AuthLayout */}
