@@ -3,7 +3,7 @@ import supabase from "../lib/supabaseClient";
 export async function getTransactionsByMonth(startDate, endDate) {
   const { data, error } = await supabase
     .from("transactions")
-    .select("*, categories(name, color, icon)")
+    .select("*, categories(name, color, icon), shopping_items(*)")
     .gte("transaction_date", startDate)
     .lte("transaction_date", endDate)
     .order("created_at", { ascending: false })
@@ -13,7 +13,7 @@ export async function getTransactionsByMonth(startDate, endDate) {
   return data;
 }
 
-export async function insertTransaction(transaction) {
+export async function insertTransaction(transaction, items = []) {
   const { data, error } = await supabase
     .from("transactions")
     .insert(transaction)
@@ -21,6 +21,22 @@ export async function insertTransaction(transaction) {
     .single();
 
   if (error) throw error;
+
+  if (items.length > 0) {
+    const itemsToInsert = items.map(item => ({
+      transaction_id: data.id,
+      description: item.description,
+      quantity: item.quantity,
+      price: item.price
+    }));
+
+    const { error: itemsError } = await supabase
+      .from("shopping_items")
+      .insert(itemsToInsert);
+
+    if (itemsError) throw itemsError;
+  }
+
   return data;
 }
 

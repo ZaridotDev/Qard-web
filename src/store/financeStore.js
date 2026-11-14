@@ -190,17 +190,18 @@ const useFinanceStore = create((set, get) => ({
   },
 
   /* ── CRUD ─────────────────────────────────── */
-  addTransaction: async (tx) => {
+  addTransaction: async (tx, items = []) => {
     if (get().isDemoMode) {
       const newTx = {
         id: `tx-${Date.now()}`,
         ...tx,
         categories: get().categories.find((c) => c.id === tx.category_id) || null,
+        metadata: items.length > 0 ? { shopping_items: items } : undefined,
       };
       set((s) => ({ transactions: [newTx, ...s.transactions] }));
       return newTx;
     }
-    const data = await insertTransaction(tx);
+    const data = await insertTransaction(tx, items);
     await get().fetchTransactions();
     return data;
   },
